@@ -1,24 +1,46 @@
 <template>
     <table class="employee-table">
-      <!-- <thead>
-        <tr>
-          <th>Name</th>
-          <th>Position</th>
+      <tbody v-if="employee">
+        <tr  v-for="key in Object.keys(employee)" :key="key">
+          <td>{{ key }}</td>
+          <td>{{ employee[key] || 'N/A' }}</td>
         </tr>
-      </thead> -->
-      <tbody>
-        <tr v-for="n in 6" :key="n">
-          <td>Name</td>
-          <td>John Doe</td>
-        </tr>
+        <tr v-if="Object.keys(employee).length === 0">
+        <td colspan="2">Employee data is loading or not available...</td>
+      </tr>
       </tbody>
     </table>
   </template>
   
   <script>
+  import axios from 'axios';
   export default {
     name: 'EmployeeTable',
-    // Here you could add any additional logic or data properties required for your component
+    data() {
+    return {
+      employee: {}
+    };
+  },
+  created() {
+    this.fetchEmployee();
+  },
+  methods: {
+    fetchEmployee() {
+      axios.get('http://localhost:8080/my-profile',{
+  headers: {
+    'Authorization': `Bearer ${localStorage.getItem("authToken")}`, 
+    'Content-Type': 'application/json'
+  }
+})
+        .then(response => {
+          this.employee = response.data;
+        })
+        .catch(error => {
+          console.error("There was an error fetching the employee data:", error);
+          this.employee = {};
+        });
+    }
+  }
   }
   </script>
   
