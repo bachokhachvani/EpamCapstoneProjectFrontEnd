@@ -4,6 +4,7 @@ import EmployeePageView from "../views/EmployeePageView.vue";
 import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import UserDetailsFormView from "../views/UserDetailsFormView.vue";
+import EditContactsView from "../views/EditContactsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,7 +23,7 @@ const router = createRouter({
       component: () => import("../views/EmployeesView.vue"),
     },
     {
-      path: "/employeePage",
+      path: "/employeePage/:id",
       name: "employeePage",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -56,6 +57,15 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       // component: () => import("../views/employeePageView.vue"),
       component: UserDetailsFormView,
+    },
+    {
+      path: "/mycontacts",
+      name: "mycontacts",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      // component: () => import("../views/employeePageView.vue"),
+      component: EditContactsView,
     },
   ],
 });

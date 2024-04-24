@@ -1,9 +1,9 @@
 <script setup>
-import HomeComponent from '../components/HomeComponent.vue'
+import HomeComponent from "../components/HomeComponent.vue";
 </script>
 
 <template>
   <main>
-    <HomeComponent />
+    <HomeComponent name="my profile" :isMyProfile="true" />
   </main>
 </template>
