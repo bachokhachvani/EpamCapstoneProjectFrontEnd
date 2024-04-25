@@ -1,14 +1,37 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+// import { ref,watchEffect } from "vue";
+import { RouterLink, RouterView, useRouter } from "vue-router";
+
+const router = useRouter();
+
+// const authToken = ref(localStorage.getItem('authToken'));
+
+// watchEffect(() => {
+//   authToken.value = localStorage.getItem('authToken');
+// });
+
+const onClick = () => {
+  localStorage.clear();
+  router.push("/login");
+};
+// const onLogin = () => {
+//   router.push("/login");
+// };
 </script>
 
 <template>
   <header>
-    <nav class="nav">
+    <div class="wrapper">
+      <div class="filler"></div>
+      <nav class="nav">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/employees">Employees</RouterLink>
       </nav>
-   
+      <button @click="onClick" class="logout-btn">Logout/Login</button>
+      <!-- <button v-if="!authToken" @click="onLogin" class="logout-btn">
+        Login/Register
+      </button> -->
+    </div>
   </header>
   <RouterView />
 </template>
@@ -22,15 +45,15 @@ header {
   justify-content: center;
   margin-bottom: 30px;
 }
-.nav{
-  background-color: #8BECFD;
+.nav {
+  background-color: #8becfd;
   border: black solid 2px;
   height: 40px;
   border-radius: 50%;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
-  width: 200px;
+  width: 33%;
   margin: 0;
 }
 
@@ -63,6 +86,29 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+.logout-btn {
+  background-color: #5271ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+}
+
+.logout-btn:hover {
+  background-color: #4f2ba2;
+}
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.filler {
+  width: 33%;
 }
 
 /* @media (min-width: 1024px) {

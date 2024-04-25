@@ -121,9 +121,9 @@ const onDelete = async () => {
 }
 
 .edit-contacts-btn:hover {
-  background-color: #5271ff;
+  background-color: #4f2ba2;
 }
-.cancel-button{
+.cancel-button {
   position: relative;
   top: 130px;
   right: 200px;

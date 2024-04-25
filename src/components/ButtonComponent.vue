@@ -28,6 +28,6 @@ export default {
 }
 
 .edit-contacts-btn:hover {
-  background-color: #5271ff;
+  background-color: #4f2ba2;
 }
 </style>
