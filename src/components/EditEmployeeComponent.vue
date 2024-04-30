@@ -38,7 +38,6 @@ const router = useRouter();
 const route = useRoute();
 const id = route.params.id;
 
-// Initialize a reactive state for localEmployee
 const localEmployee = reactive({
   name: "",
   email: "",
@@ -52,7 +51,6 @@ const localEmployee = reactive({
   managerName: "",
 });
 
-// Fetch employee data on component mount
 onMounted(async () => {
   try {
     const response = await axios.get(`http://localhost:8080/employee/${id}`, {
@@ -76,14 +74,12 @@ const submitForm = async () => {
       },
     });
     alert("Employee updated successfully");
-    router.push("/"); // Redirect after successful update
+    router.push("/");
   } catch (error) {
     console.error("Failed to update employee:", error);
     alert("Failed to update employee.");
   }
 };
-
-// Expose reactive properties and methods to the template
 </script>
 
 <style scoped>
@@ -102,15 +98,15 @@ const submitForm = async () => {
 .edit-contacts-btn:hover {
   background-color: #4f2ba2;
 }
-.form{
-    display: flex;
-    gap: 10px;
-    width: 500px;
-    align-items: center;
-    justify-content: space-between;
+.form {
+  display: flex;
+  gap: 10px;
+  width: 500px;
+  align-items: center;
+  justify-content: space-between;
 }
-.edit{
-    display: flex;
-    flex-direction: column;
+.edit {
+  display: flex;
+  flex-direction: column;
 }
 </style>

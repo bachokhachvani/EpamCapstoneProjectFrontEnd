@@ -55,10 +55,7 @@ export default {
           roleName: this.user.roleName,
         })
         .then(() => {
-          // alert("Registration successful!");
-          // console.log(response.data);
           this.login();
-          
         })
         .catch((error) => {
           console.error("There was an error registering the user:", error);
@@ -72,10 +69,9 @@ export default {
           password: this.user.password,
         })
         .then((response) => {
-          // Assuming your server sends back the access token
           localStorage.setItem("authToken", response.data.accessToken);
           alert("Login successful!");
-          this.$router.push("/userform");  // Redirect to the homepage or dashboard
+          this.$router.push("/userform"); 
         })
         .catch((error) => {
           console.error("Login failed:", error);

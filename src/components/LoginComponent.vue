@@ -41,7 +41,6 @@ export default {
           password: this.credentials.password,
         })
         .then((response) => {
-          // Here you might want to store the token in localStorage or handle it differently
           localStorage.setItem("authToken", response.data.accessToken);
           alert("Login successful!");
           this.$router.push("/");

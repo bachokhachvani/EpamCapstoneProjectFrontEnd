@@ -17,54 +17,31 @@ const router = createRouter({
     {
       path: "/employees",
       name: "employees",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/EmployeesView.vue"),
     },
     {
       path: "/employeePage/:id",
       name: "employeePage",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import("../views/employeePageView.vue"),
       component: EmployeePageView,
     },
     {
       path: "/login",
       name: "login",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import("../views/employeePageView.vue"),
       component: LoginView,
     },
     {
       path: "/register",
       name: "register",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import("../views/employeePageView.vue"),
       component: RegisterView,
     },
     {
       path: "/userform",
       name: "userform",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import("../views/employeePageView.vue"),
       component: UserDetailsFormView,
     },
     {
       path: "/mycontacts",
       name: "mycontacts",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import("../views/employeePageView.vue"),
       component: EditContactsView,
     },
   ],

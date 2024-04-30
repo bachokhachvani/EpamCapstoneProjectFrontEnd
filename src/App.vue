@@ -1,22 +1,13 @@
 <script setup>
-// import { ref,watchEffect } from "vue";
 import { RouterLink, RouterView, useRouter } from "vue-router";
 
 const router = useRouter();
 
-// const authToken = ref(localStorage.getItem('authToken'));
-
-// watchEffect(() => {
-//   authToken.value = localStorage.getItem('authToken');
-// });
 
 const onClick = () => {
   localStorage.clear();
   router.push("/login");
 };
-// const onLogin = () => {
-//   router.push("/login");
-// };
 </script>
 
 <template>
@@ -28,9 +19,6 @@ const onClick = () => {
         <RouterLink to="/employees">Employees</RouterLink>
       </nav>
       <button @click="onClick" class="logout-btn">Logout/Login</button>
-      <!-- <button v-if="!authToken" @click="onLogin" class="logout-btn">
-        Login/Register
-      </button> -->
     </div>
   </header>
   <RouterView />
@@ -110,31 +98,4 @@ nav a:first-of-type {
 .filler {
   width: 33%;
 }
-
-/* @media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-} */
 </style>

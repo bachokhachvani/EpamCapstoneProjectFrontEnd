@@ -53,6 +53,7 @@ export default {
           console.error("There was an error fetching the employee data:", error);
           if (error.response.status == 401) {
             alert("you don't have authority to see employee details!");
+            this.$router.push("/");
           }
           if (this.url == "http://localhost:8080/my-profile") {
             this.$router.push("/userform");
