@@ -23,6 +23,7 @@
 
 <script>
 import axios from "axios";
+import { toast } from "vue3-toastify";
 
 export default {
   data() {
@@ -42,12 +43,14 @@ export default {
         })
         .then((response) => {
           localStorage.setItem("authToken", response.data.accessToken);
-          alert("Login successful!");
+
           this.$router.push("/");
         })
         .catch((error) => {
           console.error("Login failed:", error);
-          alert("Login failed!");
+          toast("login failed!", {
+            autoClose: 3000,
+          });
         });
     },
     onClick() {

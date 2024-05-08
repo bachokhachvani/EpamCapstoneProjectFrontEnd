@@ -27,6 +27,7 @@
 
 <script>
 import axios from "axios";
+import {toast} from "vue3-toastify";
 
 export default {
   data() {
@@ -47,12 +48,13 @@ export default {
           },
         })
         .then(() => {
-          alert("Contact information updated successfully!");
           this.$router.push("/");
         })
         .catch((error) => {
           console.error("Failed to update contact information:", error);
-          alert("Failed to update contact information.");
+          toast("Failed to update employee!",{
+            autoClose: 3000,
+          })
         });
     },
   },

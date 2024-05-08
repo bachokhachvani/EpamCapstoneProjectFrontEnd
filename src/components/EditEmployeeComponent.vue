@@ -33,7 +33,7 @@
 import axios from "axios";
 import { reactive, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-
+import { toast } from "vue3-toastify";
 const router = useRouter();
 const route = useRoute();
 const id = route.params.id;
@@ -73,11 +73,13 @@ const submitForm = async () => {
         "Content-Type": "application/json",
       },
     });
-    alert("Employee updated successfully");
+
     router.push("/");
   } catch (error) {
     console.error("Failed to update employee:", error);
-    alert("Failed to update employee.");
+    toast("Failed to update employee!", {
+      autoClose: 3000,
+    });
   }
 };
 </script>

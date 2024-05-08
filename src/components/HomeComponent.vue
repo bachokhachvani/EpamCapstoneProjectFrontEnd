@@ -6,6 +6,7 @@ import EditEmployeeComponent from "./EditEmployeeComponent.vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 import { ref, onMounted } from "vue";
+import {toast} from "vue3-toastify";
 
 const props = defineProps({
   name: String,
@@ -57,12 +58,16 @@ const onDelete = async () => {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
       },
     });
-    alert("Employee deleted successfully");
+    toast("Employee deleted!", {
+            autoClose: 3000,
+          });
     console.log(response);
     this.$router.push("/");
   } catch (error) {
     console.error("Failed to delete employee:", error);
-    alert("Failed to delete employee");
+    toast("Failed to delete employee:"+error, {
+            autoClose: 3000,
+          });
   }
 };
 </script>

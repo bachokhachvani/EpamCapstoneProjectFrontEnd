@@ -7,10 +7,6 @@
         <input id="username" v-model="user.username" type="text" required />
       </div>
       <div>
-        <label for="role">Role:</label>
-        <input id="role" v-model="user.roleName" type="text" />
-      </div>
-      <div>
         <label for="password">Password:</label>
         <input id="password" v-model="user.password" type="password" required />
       </div>
@@ -23,19 +19,20 @@
           required
         />
       </div>
-      <button class="register-btn " type="submit">Register</button>
+      <button class="register-btn" type="submit">Register</button>
     </form>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { toast } from "vue3-toastify";
+
 export default {
   data() {
     return {
       user: {
         username: "",
-        roleName: "",
         password: "",
         confirmPassword: "",
       },
@@ -44,7 +41,9 @@ export default {
   methods: {
     register() {
       if (this.user.password !== this.user.confirmPassword) {
-        alert("Passwords do not match!");
+        toast("passwords do not match!", {
+          autoClose: 3000,
+        });
         return;
       }
 
@@ -52,14 +51,15 @@ export default {
         .post("http://localhost:8080/register", {
           username: this.user.username,
           password: this.user.password,
-          roleName: this.user.roleName,
         })
         .then(() => {
           this.login();
         })
         .catch((error) => {
           console.error("There was an error registering the user:", error);
-          alert("Registration failed!");
+          toast("There was an error registering the user!", {
+            autoClose: 3000,
+          });
         });
     },
     login() {
@@ -70,12 +70,14 @@ export default {
         })
         .then((response) => {
           localStorage.setItem("authToken", response.data.accessToken);
-          alert("Login successful!");
-          this.$router.push("/userform"); 
+
+          this.$router.push("/userform");
         })
         .catch((error) => {
           console.error("Login failed:", error);
-          alert("Login failed!");
+          toast("Login failed!", {
+            autoClose: 3000,
+          });
         });
     },
   },
@@ -93,7 +95,6 @@ label {
   font-weight: bold;
   width: 100px;
   display: block;
-
 }
 
 .register-btn {
@@ -112,7 +113,7 @@ label {
   background-color: #4f2ba2;
 }
 
-form{
+form {
   margin-top: 20px;
   display: flex;
   justify-content: space-around;

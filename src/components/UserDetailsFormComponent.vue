@@ -45,6 +45,7 @@
 
 <script>
 import axios from "axios";
+import { toast } from "vue3-toastify";
 
 export default {
   data() {
@@ -72,13 +73,14 @@ export default {
           },
         })
         .then((response) => {
-          alert("Employee added successfully!");
           console.log(response.data);
           this.$router.push("/");
         })
         .catch((error) => {
           console.error("Error adding employee:", error);
-          alert("Failed to add employee.");
+          toast("login failed!", {
+            autoClose: 3000,
+          });
         });
     },
   },
