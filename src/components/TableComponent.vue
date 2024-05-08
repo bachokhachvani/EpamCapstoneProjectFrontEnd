@@ -14,7 +14,6 @@
 
 <script>
 import axios from "axios";
-import { toast } from "vue3-toastify";
 
 export default {
   name: "EmployeeTable",
@@ -56,15 +55,8 @@ export default {
             this.$router.push("/");
           }
           if (this.url == "http://localhost:8080/my-profile") {
-            try {
-              this.$router.push("/userform");
-            } catch (e) {
-              console.error(e);
-            }
+            this.$router.push("/userform");
           }
-          toast("you don't have authority to see employee details!", {
-            autoClose: 6000,
-          });
           this.employee = {};
         });
     },
