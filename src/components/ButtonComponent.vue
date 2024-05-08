@@ -1,5 +1,8 @@
 <template>
+  <div class="button-wrapper">
   <button @click="onClick" class="edit-contacts-btn">Edit Contacts</button>
+  <button @click="onRegister" class="edit-contacts-btn">Add User</button>
+</div>
 </template>
 
 <script>
@@ -9,6 +12,10 @@ export default {
     
     onClick() {
       this.$router.push("/mycontacts");
+    },
+
+    onRegister(){
+      this.$router.push("/register-admin")
     }
   
   },
@@ -16,6 +23,11 @@ export default {
 </script>
 
 <style scoped>
+.button-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .edit-contacts-btn {
   background-color: #5271ff;
   color: white;

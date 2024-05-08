@@ -54,11 +54,16 @@ export default {
           if (error.response.status == 401) {
             this.$router.push("/");
           }
-          if (this.url == "http://localhost:8080/my-profile"&&!localStorage.getItem("authToken")) {
-            this.$router.push("/register");
-          }
-          else if(this.url == "http://localhost:8080/my-profile"&&!!localStorage.getItem("authToken")){
-            this.$router.push("/userform")
+          if (
+            this.url == "http://localhost:8080/my-profile" &&
+            !localStorage.getItem("authToken")
+          ) {
+            this.$router.push("/login");
+          } else if (
+            this.url == "http://localhost:8080/my-profile" &&
+            !!localStorage.getItem("authToken")
+          ) {
+            this.$router.push("/userform");
           }
           this.employee = {};
         });

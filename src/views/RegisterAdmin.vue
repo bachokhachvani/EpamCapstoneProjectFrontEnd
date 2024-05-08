@@ -5,7 +5,7 @@ import RegisterComponent from '../components/RegisterComponent.vue'
 
 <template>
   <div class="register">
-   <RegisterComponent :isAdmin="false" />
+   <RegisterComponent :isAdmin="true"/>
   </div>
 </template>
 

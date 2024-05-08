@@ -6,6 +6,10 @@
         <label for="username">Username:</label>
         <input id="username" v-model="user.username" type="text" required />
       </div>
+      <div v-if="isAdmin">
+        <label for="role">Role:</label>
+        <input id="role" v-model="user.roleName" type="text" />
+      </div>
       <div>
         <label for="password">Password:</label>
         <input id="password" v-model="user.password" type="password" required />
@@ -29,10 +33,18 @@ import axios from "axios";
 import { toast } from "vue3-toastify";
 
 export default {
+  props: {
+    isAdmin: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
+  },
   data() {
     return {
       user: {
         username: "",
+        roleName: "",
         password: "",
         confirmPassword: "",
       },
@@ -46,18 +58,30 @@ export default {
         });
         return;
       }
-
       axios
-        .post("http://localhost:8080/register", {
-          username: this.user.username,
-          password: this.user.password,
-        })
+        .post(
+          this.isAdmin
+            ? "http://localhost:8080/add-admin"
+            : "http://localhost:8080/register",
+          {
+            username: this.user.username,
+            password: this.user.password,
+            roleName: this.isAdmin ? this.user.roleName : "EMPLOYEE",
+          },
+          this.isAdmin?
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+              "Content-Type": "application/json",
+            },
+          }:{},
+        )
         .then(() => {
           this.login();
         })
         .catch((error) => {
           console.error("There was an error registering the user:", error);
-          toast("There was an error registering the user!", {
+          toast("There was an error registering the user! "+error.response.data, {
             autoClose: 3000,
           });
         });
