@@ -78,7 +78,7 @@ export default {
         })
         .catch((error) => {
           console.error("Error adding employee:", error);
-          toast("login failed!", {
+          toast("Error adding employee!", {
             autoClose: 3000,
           });
         });
